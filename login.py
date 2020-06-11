@@ -34,7 +34,7 @@ class Login_System:
         L2.place(x=20,y=150)
         E1=Entry(tab1,width=50,textvariable=self.email1,relief=FLAT)
         E1.place(x=100,y=100)
-        E2=Entry(tab1,width=50,textvariable=self.pass1_,relief=FLAT)
+        E2=Entry(tab1,show="*",width=50,textvariable=self.pass1_,relief=FLAT)
         E2.place(x=100,y=150)
         B1=Button(tab1,command=lambda: login(self.email1.get(),self.pass1_.get()),text="Login",width=20,height=2,relief=FLAT,font=("berlin sans fb",10,"bold"),bg="aqua")
         B1.place(x=170,y=200)
@@ -53,7 +53,7 @@ class Login_System:
         E3.place(x=100,y=100)
         E4=Entry(tab2,width=50,textvariable=self.email2,relief=FLAT)
         E4.place(x=100,y=150)
-        E5=Entry(tab2,width=50,textvariable=self.pass2_,relief=FLAT)
+        E5=Entry(tab2,show="*",width=50,textvariable=self.pass2_,relief=FLAT)
         E5.place(x=100,y=200)
         B1=Button(tab2,command=lambda: signup(self.uname.get(),self.pass2_.get(),self.email2.get()),text="Sign Up",width=20,height=2,relief=FLAT,font=("berlin sans fb",10,"bold"),bg="aqua")
         B1.place(x=170,y=250)
@@ -79,6 +79,8 @@ def signup(u,p,e):
             messagebox.showerror("Error", "Email Id already exists try logging in !!")
         elif(res==-1):
             messagebox.showerror("Error", "Internet might be disconnected !!")
+        elif(res==2):
+            messagebox.showerror("Error", "Invalid Email Id  !!")
         else:
             messagebox.showinfo("Success","You have been successfully signed up, login to access !")
         
