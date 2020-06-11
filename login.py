@@ -1,7 +1,8 @@
 from tkinter import *
-#from PIL import ImageTk
 from tkinter import messagebox
 from tkinter import ttk
+from libs import firebase_insert
+from libs import firebase_verify
 class Login_System:
     def __init__(self,root):
         self.root=root
@@ -56,16 +57,30 @@ class Login_System:
         E5.place(x=100,y=200)
         B1=Button(tab2,command=lambda: signup(self.uname.get(),self.pass2_.get(),self.email2.get()),text="Sign Up",width=20,height=2,relief=FLAT,font=("berlin sans fb",10,"bold"),bg="aqua")
         B1.place(x=170,y=250)
-def login(u,p):
-    if(u=="" or p==""):
-        messagebox.showerror("Error", "All Fields are necessary !")
+
+
+def login(e,p):
+    if(e=="" or p==""):
+        messagebox.showerror("Error", "All Fields are necessary !!")
     else:
-        print(u,p)
+        res=firebase_verify.check(e,p)
+        if(res[1]==0):
+            messagebox.showerror("Error", "Invalid Email Id or Password !!")
+        elif(res[1]==-1):
+            messagebox.showerror("Error", "Internet might be disconnected !!")
+        else:
+            messagebox.showinfo("Success","Welcome "+str(res[0])+" !")
 def signup(u,p,e):
     if(e=="" or u=="" or p==""):
-        messagebox.showerror("Error", "All Fields are necessary !")
+        messagebox.showerror("Error", "All Fields are necessary !!")
     else:
-        print(e,u,p)
+        res=firebase_insert.push(u,e,p)
+        if(res==0):
+            messagebox.showerror("Error", "Email Id already exists try logging in !!")
+        elif(res==-1):
+            messagebox.showerror("Error", "Internet might be disconnected !!")
+        else:
+            messagebox.showinfo("Success","You have been successfully signed up, login to access !")
         
 
 root=Tk()
