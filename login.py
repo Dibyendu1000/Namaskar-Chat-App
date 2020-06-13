@@ -3,6 +3,7 @@ from tkinter import messagebox
 from tkinter import ttk
 from libs import firebase_insert
 from libs import firebase_verify
+from libs import home
 class Login_System:
     def __init__(self,root):
         self.root=root
@@ -69,7 +70,14 @@ def login(e,p):
         elif(res[1]==-1):
             messagebox.showerror("Error", "Internet might be disconnected !!")
         else:
-            messagebox.showinfo("Success","Welcome "+str(res[0])+" !")
+            res=firebase_verify.check(e,p)
+            if(res[-1]==0):
+                messagebox.showerror("Error", "Invalid Email Id or Password !!")
+            elif(res[-1]==-1):
+                messagebox.showerror("Error", "Internet might be disconnected !!")
+            else:
+                root.destroy()
+                home.profile(res[-2])
 def signup(u,p,e):
     if(e=="" or u=="" or p==""):
         messagebox.showerror("Error", "All Fields are necessary !!")

@@ -12,7 +12,7 @@ def check(e,p):
                 #p=p.encode()
                 #hashed=hashed.encode()
                 if(stored[i]['Email']==e and stored[i]['Password']==p):
-                    return (stored[i]['Name'],1)
+                    return (stored[i]['Email'],stored[i]['Name'],1)
             return ('',0)
         except Exception as E:
             #print(E)

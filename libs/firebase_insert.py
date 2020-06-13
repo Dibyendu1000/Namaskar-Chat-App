@@ -1,6 +1,6 @@
 from firebase import firebase
 import re
-#import bcrypt
+import bcrypt
 
 firebase=firebase.FirebaseApplication("https://chat-app-login.firebaseio.com/", None)
 import re
@@ -16,7 +16,7 @@ def check(email):
 def push(u,e,p):
         try:
             #salt=bcrypt.gensalt()
-            #hashedpass=bcrypt.hashpw(p.encode(),salt)
+            #hashedpass=bcrypt.hashpw(p.encode())
             #hashedpass=hashedpass.decode()
             data={
             'Name':u,
@@ -36,7 +36,7 @@ def push(u,e,p):
                     result=firebase.post("/chat-app-login/User",data)
                     return 1
         except Exception as E:
-            #print(E)
+            print(E)
             return -1
 
 
