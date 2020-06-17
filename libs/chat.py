@@ -49,7 +49,7 @@ class Chat_system:
                 print(recv_for,'=',name)
                 print(recv_from,'=',src)
                 print('outside')
-                #===========This Part of the code causes the error (It displays Nothing)===========               
+                =               
                 if(recv_for==name and recv_from[:-7]==src):                    
                     msg=recv_from+':'+list(chatlog[i][recv_for].values())[0]
                     self.msg.insert(END,msg)
@@ -60,21 +60,6 @@ class Chat_system:
                     self.msg.insert(END,msg)
                     #self.msg.itemconfig(j, {'bg':'red'})
                     print('inside')
-                #====================================================================================
-                #The code works if the code is written as:
-                '''if(recv_for==name):                    
-                    msg=recv_from+':'+list(chatlog[i][recv_for].values())[0]
-                    self.msg.insert(END,msg)
-                    #self.msg.itemconfig(j, {'bg':'red'})
-                    print(src)'''
-                #But that would be problem as if the if statement only verifies recv_for, then if other
-                #users send message to receive for those messages will be received as well also this code
-                #doesnot display messages from the other user and only displays my messages
-
-                #Chatlog is of the form
-                '''chatlog={'M9lF4JqHjKBZzaOzhfW':{'Subrata':{'Dibyendu Das(10:44)': "1234\n"}}
-                         'M9lLQB4cQws0I_Y-mvM':{'Dibyendu Das':{'Subrata(11:12)':"hi\n"}}
-                         }'''
             
     def snd_rcv(self,name,src):
         chatlog=firebase.get("/chat-data-c2e74/",'')
