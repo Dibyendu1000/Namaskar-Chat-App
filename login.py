@@ -76,7 +76,7 @@ def login(e,p):
             elif(res[-1]==-1):
                 messagebox.showerror("Error", "Internet might be disconnected !!")
             else:
-                root.destroy()
+                #root.destroy()
                 home.profile(res[-2])
 def signup(u,p,e):
     if(e=="" or u=="" or p==""):
