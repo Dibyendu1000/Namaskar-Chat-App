@@ -36,6 +36,7 @@ class Chat_system:
         t_string = now.strftime("%H:%M")
         source[src+"("+t_string+")"]=text
         data[name]=source
+        self.chatbox.delete('1.0', END)
         result=firebase.post("/chat-data-c2e74/",data)
         self.snd_rcv(name,src)
         #firebase.post()
@@ -49,7 +50,6 @@ class Chat_system:
                 if(recv_for==name and recv_from[:-7]==src):                    
                     msg=recv_from+':'+list(chatlog[i][recv_for].values())[0]
                     self.msg.insert(END,msg)
-                    self.msg.itemconfig(END-1, {'fg':'red'})
                 elif(recv_for==src and recv_from[:-7]==name):
                     msg=recv_from+':'+list(chatlog[i][recv_for].values())[0]
                     self.msg.insert(END,msg)
